@@ -1,4 +1,4 @@
-const save = require("./utils/saveFile");
+const save = require("./saveFile");
 const path = require("path");
 
 const tf = require("@tensorflow/tfjs-node");
