@@ -104,6 +104,13 @@ async function recognition(files) {
     .withFaceLandmarks()
     .withFaceDescriptors()
 
+  if (!resultsRef.length) {
+    return ['no face detected'];
+  }
+  if (!resultsQuery.length) {
+    return ['no face detected'];
+  }
+
   const faceMatcher = new faceapi.FaceMatcher(resultsRef)
 
   const labels = faceMatcher.labeledDescriptors.map(ld => ld.label)
