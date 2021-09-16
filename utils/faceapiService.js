@@ -6,7 +6,7 @@ const tf = require("@tensorflow/tfjs-node");
 const canvas = require("canvas");
 
 const faceapi = require("@vladmandic/face-api/dist/face-api.node.js");
-const modelPathRoot = "./models";
+const modelPathRoot = "../models";
 
 let optionsSSDMobileNet;
 
