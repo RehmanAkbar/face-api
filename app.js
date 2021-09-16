@@ -3,7 +3,7 @@ const fileUpload = require("express-fileupload");
 const faceApiService = require("./utils/faceapiService");
 var cors = require('cors')
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8000;
 
 app.use(fileUpload());
 app.use(cors());
