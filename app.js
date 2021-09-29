@@ -8,6 +8,12 @@ const port = process.env.PORT || 8000;
 app.use(fileUpload());
 app.use(cors());
 
+
+app.get("/heartbeat", async (req, res) => {
+
+  return res.status(200).json({ message: 'all ok.' });
+});
+
 app.post("/upload", async (req, res) => {
 
   if (!req.files)
