@@ -11,7 +11,7 @@ app.use(cors());
 
 app.get("/heartbeat", async (req, res) => {
 
-  return res.status(200).json({ message: 'all ok.' });
+  return res.status(200).json({ message: 'all is well' });
 });
 
 app.post("/upload", async (req, res) => {
