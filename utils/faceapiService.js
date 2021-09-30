@@ -105,11 +105,11 @@ async function recognition(files) {
     .withFaceDescriptors()
 
   if (!resultsRef.length) {
-    tensor.dispose();
+    resultsRef.dispose();
     return ['no face detected'];
   }
   if (!resultsQuery.length) {
-    tensor.dispose();
+    resultsQuery.dispose();
     return ['no face detected'];
   }
 
@@ -125,7 +125,8 @@ async function recognition(files) {
     return { box: res.detection.box, label: bestMatch.toString() };
     return new faceapi.draw.DrawBox(res.detection.box, { label: bestMatch.toString() })
   })
-  tensor.dispose();
+  resultsQuery.dispose();
+  resultsRef.dispose();
   return queryDrawBoxes;
   // console.log(queryDrawBoxes)
   // console.log(resultsRef);
