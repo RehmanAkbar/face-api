@@ -89,9 +89,12 @@ async function recognition(files) {
   const REFERENCE_IMAGE = files.reference.data
   const QUERY_IMAGE = files.query.data
 
-  const referenceImage = await canvas.loadImage(REFERENCE_IMAGE)
-  const queryImage = await canvas.loadImage(QUERY_IMAGE)
+  // const referenceImage = await canvas.loadImage(REFERENCE_IMAGE)
+  // const queryImage = await canvas.loadImage(QUERY_IMAGE)
 
+
+  const referenceImage = await image(REFERENCE_IMAGE)
+  const queryImage = await image(QUERY_IMAGE)
   optionsSSDMobileNet = new faceapi.SsdMobilenetv1Options({
     minConfidence: 0.5,
   });
@@ -105,11 +108,11 @@ async function recognition(files) {
     .withFaceDescriptors()
 
   if (!resultsRef.length) {
-    // resultsRef.dispose();
+    referenceImage.dispose();
     return ['no face detected'];
   }
   if (!resultsQuery.length) {
-    // resultsQuery.dispose();
+    queryImage.dispose();
     return ['no face detected'];
   }
 
@@ -125,8 +128,8 @@ async function recognition(files) {
     return { box: res.detection.box, label: bestMatch.toString() };
     return new faceapi.draw.DrawBox(res.detection.box, { label: bestMatch.toString() })
   })
-  // resultsQuery.dispose();
-  // resultsRef.dispose();
+  referenceImage.dispose();
+  queryImage.dispose();
   return queryDrawBoxes;
   // console.log(queryDrawBoxes)
   // console.log(resultsRef);
