@@ -30,7 +30,7 @@ async function detect(tensor) {
 
 
 async function main(file, filename) {
-  console.log("FaceAPI single-process test");
+
 
   await faceapi.tf.setBackend("tensorflow");
   await faceapi.tf.enableProdMode();
@@ -68,7 +68,7 @@ async function main(file, filename) {
 
 
 async function recognition(files) {
-  console.log("FaceAPI single-process test");
+
 
   await faceapi.tf.setBackend("tensorflow");
   await faceapi.tf.enableProdMode();
