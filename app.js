@@ -29,6 +29,7 @@ app.post("/upload", async (req, res) => {
     result
     // url: `http://localhost:3000/out/${file.name}`,
   });
+  res.end();
 });
 
 app.use("/out", express.static("out"));

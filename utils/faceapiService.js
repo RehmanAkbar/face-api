@@ -118,7 +118,7 @@ async function recognition(files) {
 
   let faceMatcher = new faceapi.FaceMatcher(resultsRef)
 
-  let labels = faceMatcher.labeledDescriptors.map(ld => ld.label)
+  // let labels = faceMatcher.labeledDescriptors.map(ld => ld.label)
   // let refDrawBoxes = resultsRef.map(res => res.detection.box).map((box, i) => new faceapi.draw.DrawBox(box, { label: labels[i] }))
   // let outRef = faceapi.createCanvasFromMedia(referenceImage)
   // refDrawBoxes.forEach(drawBox => drawBox.draw(outRef))
@@ -126,7 +126,7 @@ async function recognition(files) {
     let bestMatch = faceMatcher.findBestMatch(res.descriptor)
     // return res.detection.box, { label: bestMatch.toString() }
     return { box: res.detection.box, label: bestMatch.toString() };
-    return new faceapi.draw.DrawBox(res.detection.box, { label: bestMatch.toString() })
+    // return new faceapi.draw.DrawBox(res.detection.box, { label: bestMatch.toString() })
   })
   referenceImage.dispose();
   queryImage.dispose();
