@@ -83,11 +83,11 @@ async function recognition(files) {
   // console.log("Loading FaceAPI models");
   const modelPath = path.join(__dirname, modelPathRoot);
   await faceapi.nets.ssdMobilenetv1.loadFromDisk(modelPath);
-  await faceapi.nets.faceLandmark68Net.loadFromDisk(modelPath)
+  // await faceapi.nets.faceLandmark68Net.loadFromDisk(modelPath)
   await faceapi.nets.faceRecognitionNet.loadFromDisk(modelPath)
 
-  const REFERENCE_IMAGE = files.reference.data
-  const QUERY_IMAGE = files.query.data
+  let REFERENCE_IMAGE = files.reference.data
+  let QUERY_IMAGE = files.query.data
 
   // const referenceImage = await canvas.loadImage(REFERENCE_IMAGE)
   // const queryImage = await canvas.loadImage(QUERY_IMAGE)
