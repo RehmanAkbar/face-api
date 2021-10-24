@@ -93,17 +93,17 @@ async function recognition(files) {
   // const queryImage = await canvas.loadImage(QUERY_IMAGE)
 
 
-  const referenceImage = await image(REFERENCE_IMAGE)
-  const queryImage = await image(QUERY_IMAGE)
+  let referenceImage = await image(REFERENCE_IMAGE)
+  let queryImage = await image(QUERY_IMAGE)
   let optionsSSDMobileNet = new faceapi.SsdMobilenetv1Options({
     minConfidence: 0.5,
   });
 
-  const resultsRef = await faceapi.detectAllFaces(referenceImage, optionsSSDMobileNet)
+  let resultsRef = await faceapi.detectAllFaces(referenceImage, optionsSSDMobileNet)
     .withFaceLandmarks()
     .withFaceDescriptors()
 
-  const resultsQuery = await faceapi.detectAllFaces(queryImage, optionsSSDMobileNet)
+  let resultsQuery = await faceapi.detectAllFaces(queryImage, optionsSSDMobileNet)
     .withFaceLandmarks()
     .withFaceDescriptors()
 
@@ -116,14 +116,14 @@ async function recognition(files) {
     return ['no face detected'];
   }
 
-  const faceMatcher = new faceapi.FaceMatcher(resultsRef)
+  let faceMatcher = new faceapi.FaceMatcher(resultsRef)
 
-  const labels = faceMatcher.labeledDescriptors.map(ld => ld.label)
-  // const refDrawBoxes = resultsRef.map(res => res.detection.box).map((box, i) => new faceapi.draw.DrawBox(box, { label: labels[i] }))
-  // const outRef = faceapi.createCanvasFromMedia(referenceImage)
+  let labels = faceMatcher.labeledDescriptors.map(ld => ld.label)
+  // let refDrawBoxes = resultsRef.map(res => res.detection.box).map((box, i) => new faceapi.draw.DrawBox(box, { label: labels[i] }))
+  // let outRef = faceapi.createCanvasFromMedia(referenceImage)
   // refDrawBoxes.forEach(drawBox => drawBox.draw(outRef))
-  const queryDrawBoxes = resultsQuery.map(res => {
-    const bestMatch = faceMatcher.findBestMatch(res.descriptor)
+  let queryDrawBoxes = resultsQuery.map(res => {
+    let bestMatch = faceMatcher.findBestMatch(res.descriptor)
     // return res.detection.box, { label: bestMatch.toString() }
     return { box: res.detection.box, label: bestMatch.toString() };
     return new faceapi.draw.DrawBox(res.detection.box, { label: bestMatch.toString() })
