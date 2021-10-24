@@ -95,7 +95,7 @@ async function recognition(files) {
 
   const referenceImage = await image(REFERENCE_IMAGE)
   const queryImage = await image(QUERY_IMAGE)
-  optionsSSDMobileNet = new faceapi.SsdMobilenetv1Options({
+  let optionsSSDMobileNet = new faceapi.SsdMobilenetv1Options({
     minConfidence: 0.5,
   });
 

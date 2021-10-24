@@ -19,7 +19,7 @@ app.post("/upload", async (req, res) => {
   if (!req.files)
     return res.status(400).json({ message: 'No files were uploaded.' });
 
-  var file = req.files.reference;
+  // var file = req.files.reference;
   
   const result = await faceApiService.recognition(req.files);
   // return result;
