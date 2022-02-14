@@ -1,3 +1,4 @@
+"use strict";
 const save = require("./saveFile");
 const path = require("path");
 
