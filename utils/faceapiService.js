@@ -2,27 +2,25 @@ const save = require("./saveFile");
 const path = require("path");
 const memoryUsage = require('process');
 
-const fs = require("fs");
-const os = require("os");
 
 const tf = require("@tensorflow/tfjs-node");
 
-const canvas = require("canvas");
+// const canvas = require("canvas");
 
 const faceapi = require("@vladmandic/face-api/dist/face-api.node.js");
 const modelPathRoot = "../models";
 
 let optionsSSDMobileNet;
 
-const { Canvas, Image, ImageData } = canvas;
-faceapi.env.monkeyPatch({ Canvas, Image, ImageData });
+// const { Canvas, Image, ImageData } = canvas;
+// faceapi.env.monkeyPatch({ Canvas, Image, ImageData });
 
 async function image(file) {
   const decoded = tf.node.decodeImage(file);
   const casted = decoded.toFloat();
   const result = casted.expandDims(0);
-  decoded.dispose();
-  casted.dispose();
+  // decoded.dispose();
+  // casted.dispose();
   return result;
 }
 
@@ -119,7 +117,7 @@ async function recognition(files) {
     queryImage.dispose();
     return ['no face detected'];
   }
-
+  return "okok";
   let faceMatcher = new faceapi.FaceMatcher(resultsRef)
 
   // let labels = faceMatcher.labeledDescriptors.map(ld => ld.label)
@@ -134,14 +132,8 @@ async function recognition(files) {
   })
   referenceImage.dispose();
   queryImage.dispose();
-  const used = memoryUsage.memoryUsage().heapUsed / 1024 / 1024;
-  console.log(`The script uses approximately ${Math.round(used * 100) / 100} MB`);
   referenceImage = false;
-  referenceImage = false;
-  const start = Date.now();
-  const LOG_FILE = path.join(__dirname, "memory-usage.csv");
-
-  fs.writeFile(LOG_FILE, "Time Alive (secs),Memory GB" + os.EOL, () => { }); // fire-and-forget
+  queryImage = false;
 
   return queryDrawBoxes;
   // console.log(queryDrawBoxes)
