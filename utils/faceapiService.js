@@ -7,7 +7,7 @@ const tf = require("@tensorflow/tfjs-node");
 
 // const canvas = require("canvas");
 
-let faceapi = require("@vladmandic/face-api/dist/face-api.node.js");
+const faceapi = require("@vladmandic/face-api/dist/face-api.node.js");
 const modelPathRoot = "../models";
 
 let optionsSSDMobileNet;
@@ -19,8 +19,10 @@ async function image(file) {
   const decoded = tf.node.decodeImage(file);
   const casted = decoded.toFloat();
   const result = casted.expandDims(0);
-  decoded.dispose();
-  casted.dispose();
+  // decoded.dispose();
+  // casted.dispose();
+  faceapi.tf.dispose(decoded);
+  faceapi.tf.dispose(casted);
   return result;
 }
 
@@ -129,7 +131,6 @@ async function recognition(files) {
   let queryDrawBoxes = resultsQuery.map(res => {
     let bestMatch = faceMatcher.findBestMatch(res.descriptor)
     // return res.detection.box, { label: bestMatch.toString() }
-    faceapi.tf.dispose();
     return { label: bestMatch.toString() };
     // return new faceapi.draw.DrawBox(res.detection.box, { label: bestMatch.toString() })
   })
