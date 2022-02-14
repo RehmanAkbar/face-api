@@ -131,15 +131,16 @@ async function recognition(files) {
   let queryDrawBoxes = resultsQuery.map(res => {
     let bestMatch = faceMatcher.findBestMatch(res.descriptor)
     // return res.detection.box, { label: bestMatch.toString() }
+    referenceImage.dispose();
+    faceapi.tf.dispose([referenceImage, queryImage]);
+    queryImage.dispose();
+    tf.dispose(referenceImage);
+    tf.dispose(queryImage);
     return { label: bestMatch.toString() };
     // return new faceapi.draw.DrawBox(res.detection.box, { label: bestMatch.toString() })
   })
 
-  referenceImage.dispose();
-  faceapi.tf.dispose([referenceImage, queryImage]);
-  queryImage.dispose();
-  tf.dispose(referenceImage);
-  tf.dispose(queryImage);
+
   referenceImage = false;
   queryImage = false;
 
