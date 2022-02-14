@@ -1,7 +1,9 @@
-"use strict";
 const save = require("./saveFile");
 const path = require("path");
 const memoryUsage = require('process');
+
+const fs = require("fs");
+const os = require("os");
 
 const tf = require("@tensorflow/tfjs-node");
 
@@ -136,6 +138,11 @@ async function recognition(files) {
   console.log(`The script uses approximately ${Math.round(used * 100) / 100} MB`);
   referenceImage = false;
   referenceImage = false;
+  const start = Date.now();
+  const LOG_FILE = path.join(__dirname, "memory-usage.csv");
+
+  fs.writeFile(LOG_FILE, "Time Alive (secs),Memory GB" + os.EOL, () => { }); // fire-and-forget
+
   return queryDrawBoxes;
   // console.log(queryDrawBoxes)
   // console.log(resultsRef);
