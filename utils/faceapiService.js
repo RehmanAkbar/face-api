@@ -72,7 +72,6 @@ async function main(file, filename) {
 async function recognition(files) {
 
 
-  return "okok";
   await faceapi.tf.setBackend("tensorflow");
   await faceapi.tf.enableProdMode();
   await faceapi.tf.ENV.set("DEBUG", false);
@@ -89,6 +88,7 @@ async function recognition(files) {
   await faceapi.nets.faceLandmark68Net.loadFromDisk(modelPath)
   await faceapi.nets.faceRecognitionNet.loadFromDisk(modelPath)
 
+  return "okok";
   let REFERENCE_IMAGE = files.reference.data
   let QUERY_IMAGE = files.query.data
 
