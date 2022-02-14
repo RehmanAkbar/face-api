@@ -7,7 +7,7 @@ const tf = require("@tensorflow/tfjs-node");
 
 // const canvas = require("canvas");
 
-const faceapi = require("@vladmandic/face-api/dist/face-api.node.js");
+let faceapi = require("@vladmandic/face-api/dist/face-api.node.js");
 const modelPathRoot = "../models";
 
 let optionsSSDMobileNet;
@@ -132,8 +132,7 @@ async function recognition(files) {
     return { label: bestMatch.toString() };
     // return new faceapi.draw.DrawBox(res.detection.box, { label: bestMatch.toString() })
   })
-
-  faceapi.tf.dispose([referenceImage, queryImage]); 
+  faceapi = null;
   referenceImage.dispose();
   queryImage.dispose();
   referenceImage = false;
