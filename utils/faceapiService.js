@@ -21,8 +21,8 @@ async function image(file) {
   const result = casted.expandDims(0);
   // decoded.dispose();
   // casted.dispose();
-  faceapi.tf.dispose(decoded);
-  faceapi.tf.dispose(casted);
+  tf.dispose(decoded);
+  tf.dispose(casted);
   return result;
 }
 
