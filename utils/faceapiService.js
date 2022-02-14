@@ -1,7 +1,7 @@
 const save = require("./saveFile");
 const path = require("path");
 const memoryUsage = require('process');
-
+const fs = require('fs');
 
 const tf = require("@tensorflow/tfjs-node");
 
@@ -19,8 +19,8 @@ async function image(file) {
   const decoded = tf.node.decodeImage(file);
   const casted = decoded.toFloat();
   const result = casted.expandDims(0);
-  // decoded.dispose();
-  // casted.dispose();
+  decoded.dispose();
+  casted.dispose();
   return result;
 }
 
@@ -129,7 +129,7 @@ async function recognition(files) {
   let queryDrawBoxes = resultsQuery.map(res => {
     let bestMatch = faceMatcher.findBestMatch(res.descriptor)
     // return res.detection.box, { label: bestMatch.toString() }
-    faceapi = null;
+    faceapi.tf.dispose();
     return { label: bestMatch.toString() };
     // return new faceapi.draw.DrawBox(res.detection.box, { label: bestMatch.toString() })
   })
