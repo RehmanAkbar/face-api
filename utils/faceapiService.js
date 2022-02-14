@@ -88,7 +88,6 @@ async function recognition(files) {
   await faceapi.nets.faceLandmark68Net.loadFromDisk(modelPath)
   await faceapi.nets.faceRecognitionNet.loadFromDisk(modelPath)
 
-  return "okok";
   let REFERENCE_IMAGE = files.reference.data
   let QUERY_IMAGE = files.query.data
 
@@ -99,6 +98,8 @@ async function recognition(files) {
   let referenceImage = await image(REFERENCE_IMAGE)
   let queryImage = await image(QUERY_IMAGE)
 
+
+  return "QUERY_IMAGE";
   let optionsSSDMobileNet = new faceapi.SsdMobilenetv1Options({
     minConfidence: 0.5,
   });
