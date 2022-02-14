@@ -21,7 +21,6 @@ async function image(file) {
   const result = casted.expandDims(0);
   // decoded.dispose();
   // casted.dispose();
-  faceapi.tf.dispose([decoded, result]); 
   return result;
 }
 
@@ -133,6 +132,8 @@ async function recognition(files) {
     return { label: bestMatch.toString() };
     // return new faceapi.draw.DrawBox(res.detection.box, { label: bestMatch.toString() })
   })
+
+  faceapi.tf.dispose(); 
   referenceImage.dispose();
   queryImage.dispose();
   referenceImage = false;
