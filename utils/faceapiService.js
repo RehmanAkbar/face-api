@@ -125,11 +125,13 @@ async function recognition(files) {
   let queryDrawBoxes = resultsQuery.map(res => {
     let bestMatch = faceMatcher.findBestMatch(res.descriptor)
     // return res.detection.box, { label: bestMatch.toString() }
-    return { box: res.detection.box, label: bestMatch.toString() };
+    return { label: bestMatch.toString() };
     // return new faceapi.draw.DrawBox(res.detection.box, { label: bestMatch.toString() })
   })
   referenceImage.dispose();
   queryImage.dispose();
+  referenceImage = false;
+  referenceImage = false;
   return queryDrawBoxes;
   // console.log(queryDrawBoxes)
   // console.log(resultsRef);
