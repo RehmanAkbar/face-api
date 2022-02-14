@@ -97,6 +97,7 @@ async function recognition(files) {
 
   let referenceImage = await image(REFERENCE_IMAGE)
   let queryImage = await image(QUERY_IMAGE)
+  return "okok";
   let optionsSSDMobileNet = new faceapi.SsdMobilenetv1Options({
     minConfidence: 0.5,
   });
@@ -117,7 +118,7 @@ async function recognition(files) {
     queryImage.dispose();
     return ['no face detected'];
   }
-  return "okok";
+
   let faceMatcher = new faceapi.FaceMatcher(resultsRef)
 
   // let labels = faceMatcher.labeledDescriptors.map(ld => ld.label)
