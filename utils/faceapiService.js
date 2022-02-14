@@ -72,6 +72,7 @@ async function main(file, filename) {
 async function recognition(files) {
 
 
+  return "okok";
   await faceapi.tf.setBackend("tensorflow");
   await faceapi.tf.enableProdMode();
   await faceapi.tf.ENV.set("DEBUG", false);
@@ -97,7 +98,7 @@ async function recognition(files) {
 
   let referenceImage = await image(REFERENCE_IMAGE)
   let queryImage = await image(QUERY_IMAGE)
-  return "okok";
+
   let optionsSSDMobileNet = new faceapi.SsdMobilenetv1Options({
     minConfidence: 0.5,
   });
