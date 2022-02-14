@@ -135,9 +135,11 @@ async function recognition(files) {
     // return new faceapi.draw.DrawBox(res.detection.box, { label: bestMatch.toString() })
   })
 
-  // referenceImage.dispose();
+  referenceImage.dispose();
   faceapi.tf.dispose([referenceImage, queryImage]);
-  // queryImage.dispose();
+  queryImage.dispose();
+  tf.dispose(referenceImage);
+  tf.dispose(queryImage);
   referenceImage = false;
   queryImage = false;
 
