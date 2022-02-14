@@ -1,6 +1,7 @@
 "use strict";
 const save = require("./saveFile");
 const path = require("path");
+const memoryUsage = require('process');
 
 const tf = require("@tensorflow/tfjs-node");
 
@@ -131,6 +132,8 @@ async function recognition(files) {
   })
   referenceImage.dispose();
   queryImage.dispose();
+  const used = memoryUsage.memoryUsage().heapUsed / 1024 / 1024;
+  console.log(`The script uses approximately ${Math.round(used * 100) / 100} MB`);
   referenceImage = false;
   referenceImage = false;
   return queryDrawBoxes;
