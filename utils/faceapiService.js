@@ -21,6 +21,7 @@ async function image(file) {
   const result = casted.expandDims(0);
   // decoded.dispose();
   // casted.dispose();
+  faceapi.tf.dispose([decoded, result]); 
   return result;
 }
 
@@ -99,7 +100,6 @@ async function recognition(files) {
   let queryImage = await image(QUERY_IMAGE)
 
 
-  return "QUERY_IMAGE";
   let optionsSSDMobileNet = new faceapi.SsdMobilenetv1Options({
     minConfidence: 0.5,
   });
